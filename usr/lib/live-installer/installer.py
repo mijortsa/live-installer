@@ -442,10 +442,10 @@ class InstallerEngine:
             grubfh = open("/target/boot/grub/grub.cfg", "r")
             for line in grubfh:
                 line = line.rstrip("\r\n")
-                if("linuxmint.png" in line):
+                if(".png" in line):
                     found_theme = True
                     print " --> Found Grub theme: %s " % line
-                if ("menuentry" in line and "Mint" in line):
+                if ("menuentry" in line and "SolusOS" in line):
                     found_entry = True
                     print " --> Found Grub entry: %s " % line
             grubfh.close()

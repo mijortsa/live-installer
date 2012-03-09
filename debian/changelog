@@ -1,3 +1,9 @@
+live-installer (2012.03.09-1) debian; urgency=low
+
+  * Fixed grub issue
+
+ -- Ikey Doherty <ikey@solusos.com>  Fri, 09 Mar 2012 18:42:23 +0000
+
 live-installer (2012.03.09) debian; urgency=low
 
   * Packaged back for SolusOS

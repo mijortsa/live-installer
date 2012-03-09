@@ -1,0 +1,10 @@
+Package: live-installer
+Version: 2012.03.09
+Architecture: all
+Maintainer: Clement Lefebvre <root@linuxmint.com>
+Installed-Size: 676
+Depends: python (>= 2.4), python (<< 3), python-gtk2, python-glade2, python-parted, gparted, inxi, python-geoip
+Section: admin
+Priority: optional
+Description: Live Installer
+ A live installer

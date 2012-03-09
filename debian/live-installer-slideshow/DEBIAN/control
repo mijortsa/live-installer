@@ -1,0 +1,10 @@
+Package: live-installer-slideshow
+Source: live-installer
+Version: 2012.03.09
+Architecture: all
+Maintainer: Clement Lefebvre <root@linuxmint.com>
+Installed-Size: 887
+Section: admin
+Priority: optional
+Description: Live Installer Slideshow
+ A Linux Mint slideshow for the live installer
