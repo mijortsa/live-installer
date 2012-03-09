@@ -294,8 +294,12 @@ class InstallerWindow:
         style = self.wTree.get_widget("menubar").style.copy()
         self.wTree.get_widget("menubar").hide()
         # apply to the header       
-        self.wTree.get_widget("help_label").realize()
-        self.wTree.get_widget("help_label").modify_fg(gtk.STATE_NORMAL, style.fg[gtk.STATE_NORMAL])       
+        self.wTree.get_widget("eventbox_header").realize()
+	self.wTree.get_widget("help_label").realize()
+	bgc = style.bg[gtk.STATE_NORMAL]
+	fgc = style.fg[gtk.STATE_NORMAL]
+        self.wTree.get_widget("eventbox_header").modify_bg(gtk.STATE_NORMAL, bgc)
+	self.wTree.get_widget("help_label").modify_fg(gtk.STATE_NORMAL, fgc)        
         if(fullscreen):
             # dedicated installer mode thingum
             self.window.maximize()
