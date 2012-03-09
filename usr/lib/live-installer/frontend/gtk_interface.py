@@ -148,7 +148,7 @@ class InstallerWindow:
         self.wizard_pages[self.PAGE_KEYBOARD] = WizardPage("Choose your keyboard layout", "keyboard.png")
         self.wizard_pages[self.PAGE_HDD] = WizardPage("On which hard drive do you want to install SolusOS?", "hdd.svg")
         self.wizard_pages[self.PAGE_PARTITIONS] = WizardPage("Select where you want to install SolusOS", "hdd.svg")
-        self.wizard_pages[self.PAGE_USER] = WizardPage("Please indicate your name and select a username, a password and a hostname", "user.png")
+        self.wizard_pages[self.PAGE_USER] = WizardPage("Please indicate your name and select a username,\na password and a hostname", "user.png")
         self.wizard_pages[self.PAGE_ADVANCED] = WizardPage("Please review the following advanced options", "advanced.png")
         self.wizard_pages[self.PAGE_OVERVIEW] = WizardPage("Please review this summary and make sure everything is correct", "summary.png")
         self.wizard_pages[self.PAGE_INSTALL] = WizardPage("Please wait while SolusOS is being installed on your computer", "install.png")
@@ -240,6 +240,11 @@ class InstallerWindow:
         # events for detecting password mismatch..        
         self.wTree.get_widget("entry_userpass1").connect("changed", self.assign_password)
         self.wTree.get_widget("entry_userpass2").connect("changed", self.assign_password)
+
+        # Automatic login?
+        def toggler(w):
+            self.setup.autologin = w.get_active()
+        self.wTree.get_widget("checkbutton_autologin").connect("toggled", toggler)
 
         # link the checkbutton to the combobox
         grub_check = self.wTree.get_widget("checkbutton_grub")
@@ -1294,6 +1299,8 @@ class InstallerWindow:
         iter = model.append(top)
         model.set(iter, 0, _("Username: ") + "<b>%s</b>" % self.setup.username)
         top = model.append(None)
+        model.set(iter, 0, _("Automatic Login: ") + "<b>%s</b>" % str(self.setup.autologin))
+        iter = model.append(top)
         model.set(top, 0, _("System settings"))
         iter = model.append(top)
         model.set(iter, 0, _("Hostname: ") + "<b>%s</b>" % self.setup.hostname)       

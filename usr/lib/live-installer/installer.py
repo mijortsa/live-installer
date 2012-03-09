@@ -198,6 +198,8 @@ class InstallerEngine:
             print " --> Removing live-initramfs"
             our_current += 1
             self.update_progress(total=our_total, current=our_current, message=_("Removing live configuration (packages)"))
+            if (os.path.exists("/target/etc/skel/Desktop/debian-installer-launcher.desktop") ):
+                os.system("rm /target/etc/skel/Desktop/debian-installer-launcher.desktop")
             self.do_run_in_chroot("apt-get remove --purge --yes --force-yes live-boot live-boot-initramfs-tools live-initramfs live-installer live-config live-config-sysvinit")
             
             # add new user
@@ -280,6 +282,10 @@ class InstallerEngine:
             gdmconffh = open("/target/etc/gdm3/daemon.conf", "w")
             gdmconffh.write("# GDM configuration storage\n")
             gdmconffh.write("\n[daemon]\n")
+            # Check for automatic login
+            if (setup.autologin):
+                    gdmconffh.write("\nAutomaticLogin=%s" % setup.username)
+                    gdmconffh.write("\nAutomaticLoginEnable=True")
             gdmconffh.write("\n[security]\n")
             gdmconffh.write("\n[xdmcp]\n")
             gdmconffh.write("\n[greeter]\n")
@@ -306,8 +312,6 @@ class InstallerEngine:
             print " --> Localizing Firefox and Thunderbird"
             self.update_progress(total=our_total, current=our_current, message=_("Localizing Firefox and Thunderbird"))
             if setup.language != "en_US":                
-                os.system("apt-get update")
-                self.do_run_in_chroot("apt-get update")
                 locale = setup.language.replace("_", "-").lower()                
                                
                 num_res = commands.getoutput("aptitude search firefox-l10n-%s | grep firefox-l10n-%s | wc -l" % (locale, locale))
@@ -500,6 +504,7 @@ class Setup(object):
     grub_device = None
     disks = []
     target_disk = None
+    auto_login = False
     
     #Descriptions (used by the summary screen)    
     keyboard_model_description = None
