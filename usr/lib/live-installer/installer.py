@@ -504,7 +504,7 @@ class Setup(object):
     grub_device = None
     disks = []
     target_disk = None
-    auto_login = False
+    autologin = False
     
     #Descriptions (used by the summary screen)    
     keyboard_model_description = None

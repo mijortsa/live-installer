@@ -3,11 +3,11 @@ ed05384bbbf9c62f817de84c301bdeb9  usr/bin/live-installer
 6579cdb663d995cc709a375d1430ab55  usr/lib/live-installer/configobj.py
 d41d8cd98f00b204e9800998ecf8427e  usr/lib/live-installer/frontend/__init__.py
 771f5412ab69e0c65263a61bd8306277  usr/lib/live-installer/frontend/gtk_interface.py
-b109818f862d917944b9a3429b27d52b  usr/lib/live-installer/installer.py
+5583d4308d0722620c1ed6cdb272f7dd  usr/lib/live-installer/installer.py
 e3043c87bb1ddf5c64ab5c6365880cbe  usr/lib/live-installer/main.py
 269cd24121f875d5dcdbde47bb9d1d7b  usr/lib/live-installer/standalone-dm.py
 07043858fd9f0f37187e7b3c79cded37  usr/share/applications/debian-installer-launcher.desktop
-43fa84be01a7133dff359d1266446d47  usr/share/doc/live-installer/changelog.gz
+f33139104264d7061a7998552a9e2a2e  usr/share/doc/live-installer/changelog.Debian.gz
 3bb09c03eb1b6c9638a7010add62c615  usr/share/doc/live-installer/copyright
 a73cff1c66032427695020e6447d5f54  usr/share/icons/live-installer.png
 0c19f5b0fae5a5e63665660d93ca7e28  usr/share/icons/live-installer.xpm

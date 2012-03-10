@@ -1,3 +1,9 @@
+live-installer (2012.03.09-2) debian; urgency=low
+
+  * Fixed autologin variable error (thanks Justin)
+
+ -- Ikey Doherty <ikey@solusos.com>  Sat, 10 Mar 2012 00:16:49 +0000
+
 live-installer (2012.03.09-1) debian; urgency=low
 
   * Fixed grub issue
