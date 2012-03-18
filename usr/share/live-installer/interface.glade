@@ -161,17 +161,18 @@
                         <property name="visible">True</property>
                         <property name="orientation">vertical</property>
                         <child>
-                          <widget class="GtkScrolledWindow" id="scrolled_partitions">
+                          <widget class="GtkLabel" id="label9">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="hscrollbar_policy">automatic</property>
-                            <property name="vscrollbar_policy">automatic</property>
-                            <child>
-                              <placeholder/>
-                            </child>
+                            <property name="xalign">0</property>
+                            <property name="label" translatable="yes">Use this page to choose where you wish to install &lt;b&gt;SolusOS&lt;/b&gt;
+We recommend using at least a 20GB root partition. For users with low memory
+please also select a &lt;b&gt;swap partition&lt;/b&gt;</property>
+                            <property name="use_markup">True</property>
                           </widget>
                           <packing>
                             <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="padding">10</property>
                             <property name="position">0</property>
                           </packing>
                         </child>

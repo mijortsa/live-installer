@@ -843,20 +843,6 @@ class InstallerWindow:
                 html_partitions = html_partitions + "</tr></table>"
             #self.wTree.get_widget("combobox_grub").set_model(grub_model)
             #self.wTree.get_widget("combobox_grub").set_active(0)
-                        
-            import tempfile            
-            html_header = "<html><head><style>body {background-color:#d6d6d6;} \
-            .partition{position:relative; width:100%; float: left; background: white;} \
-            .partition-cell{ position:relative; margin: 2px 5px 2px 0; padding: 1px; float: left; background: white;} \
-            .partition-text{ position:absolute; top:10; text-align: center; width=100px; left: 0; right: 0; margin: 0 auto; font-size:12px; } \
-            .partition-os{ position:absolute; top:30; text-align: center; width=100px; left: 0; right: 0; margin: 0 auto; font-size:10px; font-style:italic;color:#555555;} </style></head><body>"
-            html_footer = "</body></html>"
-            html = html_header + html_partitions + html_footer
-           
-            # create temporary file
-            f = tempfile.NamedTemporaryFile(delete=False)
-            f.write(html)
-            f.close()  
                                    
             #self.browser.open(f.name)            
             #browser.load_html_string(html, "file://")                 
