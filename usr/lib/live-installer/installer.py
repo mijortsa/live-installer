@@ -256,6 +256,8 @@ class InstallerEngine:
                         fstab.write("%s\tswap\tswap\tsw\t0\t0\n" % partition_uuid)
                     else:                                                    
                         fstab.write("%s\t%s\t%s\t%s\t%s\t%s\n" % (partition_uuid, partition.mount_as, partition.type, fstab_mount_options, "0", fstab_fsck_option))
+            # write the tmpfs entry
+            fstab.write("tmpfs\t/tmp\ttmpfs\tnodev,nosuid\t0\t0"
             fstab.close()
             
             # write host+hostname infos
