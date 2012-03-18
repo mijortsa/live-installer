@@ -326,11 +326,11 @@ class InstallerWindow:
         #    self.wTree.get_widget("vbox_install").add(browser)
         #    self.wTree.get_widget("vbox_install").show_all()                                                            
         
-        self.browser = webkit.WebView()
-        s = self.browser.get_settings()
-        s.set_property('enable-file-access-from-file-uris', True)
-        s.set_property('enable-default-context-menu', False)     
-        self.wTree.get_widget("scrolled_partitions").add(self.browser)   
+        #self.browser = webkit.WebView()
+        #s = self.browser.get_settings()
+        #s.set_property('enable-file-access-from-file-uris', True)
+        #s.set_property('enable-default-context-menu', False)     
+        #self.wTree.get_widget("scrolled_partitions").add(self.browser)   
         
         self.window.show_all()
         
@@ -858,9 +858,9 @@ class InstallerWindow:
             f.write(html)
             f.close()  
                                    
-            self.browser.open(f.name)            
+            #self.browser.open(f.name)            
             #browser.load_html_string(html, "file://")                 
-            self.wTree.get_widget("scrolled_partitions").show_all()                                                                        
+            #self.wTree.get_widget("scrolled_partitions").show_all()                                                                        
             self.wTree.get_widget("treeview_disks").set_model(model)                                
             
             
