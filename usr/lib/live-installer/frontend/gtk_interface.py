@@ -331,7 +331,14 @@ class InstallerWindow:
         #s.set_property('enable-file-access-from-file-uris', True)
         #s.set_property('enable-default-context-menu', False)     
         #self.wTree.get_widget("scrolled_partitions").add(self.browser)   
-        
+ 
+        # little hack, find out what device we're running from, and ignore the thing.
+        output = commands.getoutput("mount")
+        for line in output.replace("\r","").split("\n"):
+                # check for presence of /live/image
+                if "/live/image" in line:
+                        self.install_media = line.split(" ")[0]
+   
         self.window.show_all()
         
     def i18n(self):
@@ -606,10 +613,12 @@ class InstallerWindow:
                 if("/dev/" in section):                    
                     elements = section.split()
                     for element in elements:
-                        if "/dev/" in element: 
-                            self.setup.disks.append(element)
-                            description = section.replace(element, "").strip()
-                            iter = model.append([element, description]);
+                        if "/dev/" in element:
+                            # IGNORE INSTALLATION MEDIA
+                            if not self.install_media in element: 
+                                    self.setup.disks.append(element)
+                                    description = section.replace(element, "").strip()
+                                    iter = model.append([element, description]);
                 
         self.wTree.get_widget("treeview_hdds").set_model(model)
         
