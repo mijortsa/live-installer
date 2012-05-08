@@ -668,9 +668,9 @@ class InstallerWindow:
             
             swap_found = False
             
-            if self.setup.target_disk is not None:
-            #for disk in self.setup.disks:
-                #self.setup.target_disk = disk
+            #if self.setup.target_disk is not None:
+            for disk in self.setup.disks:
+                self.setup.target_disk = disk
                 path =  self.setup.target_disk # i.e. /dev/sda
                 #grub_model.append([path])
                 device = parted.getDevice(path)                
@@ -1144,13 +1144,13 @@ class InstallerWindow:
                 self.activate_page(self.PAGE_KEYBOARD)
             elif(sel == self.PAGE_KEYBOARD):
                 # with these two sticks and my highly evolved brain...
-                if len(self.setup.disks) > 1:
-                    self.activate_page(self.PAGE_HDD)                
-                else:
-                    self.activate_page(self.PAGE_PARTITIONS)                
-                    self.build_partitions()
+                #if len(self.setup.disks) > 1:
+                #    self.activate_page(self.PAGE_HDD)                
+                #else:
+                #    self.activate_page(self.PAGE_PARTITIONS)                
+                #    self.build_partitions()
                 # multi disk plox.
-                #self.activate_page(self.PAGE_PARTITIONS)
+                self.activate_page(self.PAGE_PARTITIONS)
                 self.build_partitions()                    
             elif(sel == self.PAGE_HDD):
                 self.activate_page(self.PAGE_PARTITIONS)
