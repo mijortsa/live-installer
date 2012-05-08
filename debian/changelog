@@ -1,3 +1,27 @@
+live-installer (2012.05.08) eveline; urgency=low
+
+  * Most recent build
+
+ -- Ikey Doherty <ikey@solusos.com>  Tue, 08 May 2012 18:28:36 +0100
+
+live-installer (2012.03.22-1) eveline; urgency=low
+
+  * Back to grub
+
+ -- Ikey Doherty <ikey@solusos.com>  Thu, 22 Mar 2012 18:15:18 +0000
+
+live-installer (2012.03.22) eveline; urgency=low
+
+  * Fixed gparted kills user issue
+
+ -- Ikey Doherty <ikey@solusos.com>  Thu, 22 Mar 2012 17:23:26 +0000
+
+live-installer (2012.03.18) eveline; urgency=low
+
+  * Now supports multiple disks. WebKit component removed. tmpfs by default
+
+ -- Ikey Doherty <ikey@solusos.com>  Sun, 18 Mar 2012 16:01:51 +0000
+
 live-installer (2012.03.09-2) debian; urgency=low
 
   * Fixed autologin variable error (thanks Justin)

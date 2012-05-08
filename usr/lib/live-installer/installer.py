@@ -375,7 +375,7 @@ class InstallerEngine:
             self.do_run_in_chroot("mv /etc/default/keyboard.new /etc/default/keyboard")
 
             # write MBR (grub)
-            print " --> Configuring Grub"
+            print " --> Configuring grub"
             our_current += 1
             if(setup.grub_device is not None):
                 self.update_progress(pulse=True, total=our_total, current=our_current, message=_("Installing bootloader"))
@@ -436,7 +436,7 @@ class InstallerEngine:
         
     def do_check_grub(self, our_total, our_current):
         self.update_progress(pulse=True, total=our_total, current=our_current, message=_("Checking bootloader"))
-        print " --> Checking Grub configuration"
+        print " --> Checking grub configuration"
         time.sleep(5)
         found_theme = False
         found_entry = False
@@ -446,10 +446,10 @@ class InstallerEngine:
                 line = line.rstrip("\r\n")
                 if(".png" in line):
                     found_theme = True
-                    print " --> Found Grub theme: %s " % line
+                    print " --> Found grub theme: %s " % line
                 if ("menuentry" in line and "SolusOS" in line):
                     found_entry = True
-                    print " --> Found Grub entry: %s " % line
+                    print " --> Found grub entry: %s " % line
             grubfh.close()
             return (found_entry)
         else:

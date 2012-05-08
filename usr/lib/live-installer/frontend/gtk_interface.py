@@ -657,55 +657,16 @@ class InstallerWindow:
             
             swap_found = False
             
-            #if self.setup.target_disk is not None:
-            for disk in self.setup.disks:
-                self.setup.target_disk = disk
+            if self.setup.target_disk is not None:
+            #for disk in self.setup.disks:
+                #self.setup.target_disk = disk
                 path =  self.setup.target_disk # i.e. /dev/sda
                 #grub_model.append([path])
                 device = parted.getDevice(path)                
                 try:
                     disk = parted.Disk(device)
                 except Exception:
-                    dialog = QuestionDialog(_("Installation Tool"), _("No partition table was found on the hard drive. Do you want the installer to create a set of partitions for you? Note: This will erase any data present on the disk."))
-                    if (dialog.show()):
-                        # Create a default partition set up                        
-                        disk = parted.freshDisk(device, 'msdos')
-                        disk.commit()
-
-                        #Swap
-                        regions = disk.getFreeSpaceRegions()
-                        if len(regions) > 0:
-                            region = regions[-1]    
-                            ram_size = int(commands.getoutput("cat /proc/meminfo | grep MemTotal | awk {'print $2'}")) # in KiB
-                            post_mbr_gap = parted.sizeToSectors(1, "MiB", device.sectorSize) # Grub2 requires a post-MBR gap
-                            start = post_mbr_gap
-                            num_sectors = parted.sizeToSectors(ram_size, "KiB", device.sectorSize)
-                            num_sectors = int(float(num_sectors) * 1.5) # Swap is 1.5 times bigger than RAM
-                            end = start + num_sectors
-                            cylinder = device.endSectorToCylinder(end)
-                            end = device.endCylinderToSector(cylinder)
-                            geometry = parted.Geometry(device=device, start=start, end=end)
-                            if end < region.length:
-                                partition = parted.Partition(disk=disk, type=parted.PARTITION_NORMAL, geometry=geometry)
-                                constraint = parted.Constraint(exactGeom=geometry)
-                                disk.addPartition(partition=partition, constraint=constraint)
-                                disk.commit()
-                                os.system("mkswap %s" % partition.path)                                
-
-                        #Root
-                        regions = disk.getFreeSpaceRegions()
-                        if len(regions) > 0:
-                            region = regions[-1]
-                            partition = parted.Partition(disk=disk, type=parted.PARTITION_NORMAL, geometry=region)
-                            constraint = parted.Constraint(exactGeom=region)
-                            disk.addPartition(partition=partition, constraint=constraint)
-                            disk.commit()                            
-                            os.system("mkfs.ext4 %s" % partition.path)
-                       
-                        self.build_partitions()
-                        return
-                    else:
-                        # Do nothing... just get out of here..
+                        print "Please use gparted to create a partition table first"
                         raise
                 partition = disk.getFirstPartition()
                 last_added_partition = PartitionSetup(partition)
@@ -1172,13 +1133,13 @@ class InstallerWindow:
                 self.activate_page(self.PAGE_KEYBOARD)
             elif(sel == self.PAGE_KEYBOARD):
                 # with these two sticks and my highly evolved brain...
-                #if len(self.setup.disks) > 1:
-                #    self.activate_page(self.PAGE_HDD)                
-                #else:
-                #    self.activate_page(self.PAGE_PARTITIONS)                
-                #    self.build_partitions()
+                if len(self.setup.disks) > 1:
+                    self.activate_page(self.PAGE_HDD)                
+                else:
+                    self.activate_page(self.PAGE_PARTITIONS)                
+                    self.build_partitions()
                 # multi disk plox.
-                self.activate_page(self.PAGE_PARTITIONS)
+                #self.activate_page(self.PAGE_PARTITIONS)
                 self.build_partitions()                    
             elif(sel == self.PAGE_HDD):
                 self.activate_page(self.PAGE_PARTITIONS)
