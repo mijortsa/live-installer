@@ -179,6 +179,15 @@ class InstallerWindow:
 
         self.build_timezones()
 
+        # little hack, find out what device we're running from, and ignore the thing.
+        output = commands.getoutput("mount")
+        # temporary value
+        self.install_media = "UNDEFINED"
+        for line in output.replace("\r","").split("\n"):
+                # check for presence of /live/image
+                if "/live/image" in line:
+                        self.install_media = line.split(" ")[0]
+
         # disk view
         ren = gtk.CellRendererText()
         self.column1 = gtk.TreeViewColumn("Hard drive", ren)
@@ -331,13 +340,6 @@ class InstallerWindow:
         #s.set_property('enable-file-access-from-file-uris', True)
         #s.set_property('enable-default-context-menu', False)     
         #self.wTree.get_widget("scrolled_partitions").add(self.browser)   
- 
-        # little hack, find out what device we're running from, and ignore the thing.
-        output = commands.getoutput("mount")
-        for line in output.replace("\r","").split("\n"):
-                # check for presence of /live/image
-                if "/live/image" in line:
-                        self.install_media = line.split(" ")[0]
    
         self.window.show_all()
         
